@@ -1,0 +1,47 @@
+#game-board {
+    width: 1000px;
+    height: 800px;
+    border: 5px solid #333;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.block {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #000;
+    float: left;
+    margin: 1px;
+}
+.green {
+    background-color: #0f0;
+}
+.blue {
+    background-color: #00f;
+}
+.red {
+    background-color: #f00;
+}
+.yellow {
+    background-color: #ff0;
+}
+
+.row {
+    display: flex;
+}
+
+.block:hover {
+    background-color: purple;
+    cursor: pointer;
+}
+
+#game-container {
+    display: flex;
+}
+
+#points-container {
+    width: 30%; /* Adjust width of points container */
+    padding: 20px;
+    border: 5px solid #333;
+    background-color: #fff;
+}
