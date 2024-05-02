@@ -8,12 +8,47 @@
   </head>
   <body>
     <div id="game-container">
+      <audio id="sound" loop>
+        <source src="hatterzene.mp3" type="audio/mpeg" />
+      </audio>
+      <audio id="winSound">
+        <source src="winsound.mp3" type="audio/mpeg" />
+      </audio>
       <div id="game-board"></div>
       <div id="points-container">
-        <p>Pontok: <span id="points">0</span></p>
+        <p id="pointCounter">Pontok: <span id="points">0</span></p>
         <p>Idő: <span id="timer">0:00</span></p>
+        <h3>Leírás</h3>
+        <p class="description">
+          A játék az eredeti Crashdown nevű játék alapján készült. A módosítás
+          annyi, hogy nem egy bizonyos idő után kapunk új sort, hanem 3
+          kattintás után. A játékot akkor lehet megnyerni, ha a játékos eléri az
+          5000 pontot anélkül hogy letelne az idő vagy a blokkok túl magasra
+          érnének. Ha a játékos egyszerre több mint 5 blokkot tüntet el egy
+          kattintással, akkor plusz 5 másodperc adódik hozzá az időhöz.
+        </p>
       </div>
     </div>
+
+    <div id="game-over-container" style="display: none">
+      <h1>Game Over</h1>
+      <p>Összes pontod: <span id="game-over-score">0</span></p>
+      <input type="text" id="username" name="username" placeholder="Név" />
+      <button type="submit" name="button" onclick="submitform()">Beküld</button>
+    </div>
+
+    <div id="win-container" style="display: none">
+      <h1>Gratulálok, Te nyertél!</h1>
+      <p>Összes pontod: <span id="win-score">0</span></p>
+      <p>Add meg a neved:</p>
+      <input type="text" id="username" name="username" placeholder="Név" />
+      <button type="submit" name="button" onclick="submitform()">Beküld</button>
+
+      <p><a href="index.html">Új játék</a></p>
+    </div>
+
+    <div id="scoreboard" style="display: none">Scoreboard</div>
+    <div id="scores-container"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>

@@ -1,33 +1,63 @@
 #game-board {
-    width: 1000px;
-    height: 800px;
+    height: 97vh;
     border: 5px solid #333;
     background-color: #eee;
     display: flex;
     flex-direction: column-reverse;
+    background-image: url('profil.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 70vw;
+    min-width: 70vw;
+    width: 70vw;
+}
+
+#game-over-container {
+    background-image: url("losePageImage.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 95vh;
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 50px;
+}
+#win-container {
+    background-image: url("winPageImage.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 95vh;
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 50px;
 }
 .block {
-    width: 70px;
-    height: 70px;
+    min-width: 65px;
+    max-width: 65px;
+    min-height: 65px;
+    max-height: 65px;
     border: 1px solid #000;
     float: left;
     margin: 1px;
 }
 .green {
     background-color: #0f0;
+    opacity: 0.75;
 }
 .blue {
     background-color: #00f;
+    opacity: 0.75;
 }
 .red {
     background-color: #f00;
-}
-.yellow {
-    background-color: #ff0;
+    opacity: 0.75;
 }
 
 .row {
     display: flex;
+    max-width: 95wv;
+    min-width: 95wv;
 }
 
 .block:hover {
@@ -37,11 +67,19 @@
 
 #game-container {
     display: flex;
+    
 }
 
 #points-container {
-    width: 30%; /* Adjust width of points container */
+    text-align: center;
+    width: 30%;
+    height: 97vh;
     padding: 20px;
     border: 5px solid #333;
     background-color: #fff;
+    font-size: 40px;
+}
+
+.description{
+    font-size: 28px;
 }
