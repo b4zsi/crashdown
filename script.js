@@ -53,18 +53,33 @@ $(document).ready(function () {
     newRow += '<div class="block ' + getRandomColor() + '"></div>';
   }
 
+  function removeBlocksWithFade(blocksToRemove) {
+    blocksToRemove.each(function () {
+      $(this).fadeOut(1000, function () {
+        $(this).remove();
+      });
+    });
+  }
+
   function removeBlocks(clickedBlock) {
     var color1 = clickedBlock.attr("class").toString();
     var color = color1.split(" ")[1];
     var blocksToRemove = getAdjacentBlocks(clickedBlock, color);
-    if (blocksToRemove.length >= 5) {
-      totalTimeInSeconds += 5;
+    if (blocksToRemove.length > 5) {
+      totalTimeInSeconds += 6;
     }
+
+    if (blocksToRemove.length >= 5) {
+      removeBlocksWithFade(blocksToRemove);
+    } else {
+      blocksToRemove.each(function () {
+        $(this).remove();
+      });
+    }
+
     var rowIndex = clickedBlock.parent().index();
     var columnIndex = clickedBlock.index();
-    blocksToRemove.each(function () {
-      $(this).remove();
-    });
+
     dropBlocksAbove(rowIndex, columnIndex);
 
     var numBlocksRemoved = blocksToRemove.length;
@@ -216,27 +231,27 @@ $(document).ready(function () {
 
   startTimer();
 
-  fetch("scores.txt")
-    .then((response) => response.text()) // Get the text content
-    .then((data) => {
-      // Split the content into an array of lines
-      const lines = data.split("\n");
+  // fetch("scores.txt")
+  //   .then((response) => response.text()) // Get the text content
+  //   .then((data) => {
+  //     // Split the content into an array of lines
+  //     const lines = data.split("\n");
 
-      // Create a container to display scores
-      const scoresContainer = document.getElementById("scores-container");
+  //     // Create a container to display scores
+  //     const scoresContainer = document.getElementById("scores-container");
 
-      // Create an unordered list to hold the scores
-      const ul = document.createElement("ul");
+  //   // Create an unordered list to hold the scores
+  //   const ul = document.createElement("ul");
 
-      // Iterate over each line (each score) and create list items
-      lines.forEach((line) => {
-        const li = document.createElement("li");
-        li.textContent = line;
-        ul.appendChild(li);
-      });
+  //   // Iterate over each line (each score) and create list items
+  //   lines.forEach((line) => {
+  //     const li = document.createElement("li");
+  //     li.textContent = line;
+  //     ul.appendChild(li);
+  //   });
 
-      // Append the list to the container
-      scoresContainer.appendChild(ul);
-    })
-    .catch((error) => console.error("Error fetching scores:", error));
+  //   // Append the list to the container
+  //   scoresContainer.appendChild(ul);
+  // })
+  // .catch((error) => console.error("Error fetching scores:", error));
 });
