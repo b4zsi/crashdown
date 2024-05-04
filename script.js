@@ -29,7 +29,6 @@ $(document).ready(function () {
     return basePoints + bonusPoints;
   }
 
-  // Function to populate the game board with random-colored blocks
   function populateBoard() {
     $(".block").each(function () {
       $(this).addClass(getRandomColor());
@@ -87,7 +86,6 @@ $(document).ready(function () {
     updatePoints(parseInt($("#points").text()) + score);
   }
 
-  // Function to drop blocks above the removed block
   function dropBlocksAbove(rowIndex, columnIndex) {
     var rows1 = $("#game-board").children();
     for (var i = rowIndex - 1; i >= 0; i--) {
@@ -158,7 +156,9 @@ $(document).ready(function () {
   populateBoard();
 
   $(document).on("click", ".block", function () {
+    
     if (!sound) {
+      startTimer();
       var zene = document.getElementById("sound");
       zene.play();
       sound = true;
@@ -190,29 +190,40 @@ $(document).ready(function () {
   }
 
   function isRowEmpty(rowIndex) {
-    var row = $("#game-board").children().eq(rowIndex); // Select the row by index
+    var row = $("#game-board").children().eq(rowIndex);
     var isEmpty = true;
     row.children().each(function () {
       if ($(this).hasClass("block")) {
         isEmpty = false;
-        return false; // Break out of the loop if a block is found
+        return false;
       }
     });
     return isEmpty;
   }
 
   function showGameOver(score) {
-    $("#game-container").hide(); // Hide game board
-    $("#game-over-score").text(score); // Display score
-    $("#game-over-container").show(); // Show game over page
+
+    const playerName = prompt("Enter your name:");
+    const leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "[]");
+    leaderboard.push({ name: playerName, score: score });
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+
+    $("#game-container").hide();
+    $("#game-over-score").text(score);
+    $("#game-over-container").show();
   }
   function showWinPage(score) {
+    const playerName = prompt("Enter your name:");
+    const leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "[]");
+    leaderboard.push({ name: playerName, score: score });
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+
     var winSound = document.getElementById("winSound");
     winSound.play();
     totalTimeInSeconds = 1000000;
-    $("#game-container").hide(); // Hide game container
-    $("#win-container").show(); // Show win page
-    $("#win-score").text(score); // Display score
+    $("#game-container").hide();
+    $("#win-container").show();
+    $("#win-score").text(score);
   }
 
   function startTimer() {
@@ -229,29 +240,20 @@ $(document).ready(function () {
     }, 1000);
   }
 
-  startTimer();
+});
+$(function () {
+  const leaderboardBody = $("#leaderboard-body");
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "[]");
+  leaderboard.sort((a, b) => b.score - a.score);
 
-  // fetch("scores.txt")
-  //   .then((response) => response.text()) // Get the text content
-  //   .then((data) => {
-  //     // Split the content into an array of lines
-  //     const lines = data.split("\n");
+  for (let i = 0; i < leaderboard.length; i++) {
+      const name = leaderboard[i].name;
+      const score = leaderboard[i].score;
 
-  //     // Create a container to display scores
-  //     const scoresContainer = document.getElementById("scores-container");
+      const row = $("<tr></tr>");
+      row.append(`<td>${name}</td>`);
+      row.append(`<td>${score}</td>`);
 
-  //   // Create an unordered list to hold the scores
-  //   const ul = document.createElement("ul");
-
-  //   // Iterate over each line (each score) and create list items
-  //   lines.forEach((line) => {
-  //     const li = document.createElement("li");
-  //     li.textContent = line;
-  //     ul.appendChild(li);
-  //   });
-
-  //   // Append the list to the container
-  //   scoresContainer.appendChild(ul);
-  // })
-  // .catch((error) => console.error("Error fetching scores:", error));
+      leaderboardBody.append(row);
+  }
 });

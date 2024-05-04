@@ -1,5 +1,5 @@
 #game-board {
-    height: 97vh;
+    height: 100vh;
     border: 5px solid #333;
     background-color: #eee;
     display: flex;
@@ -33,10 +33,10 @@
     font-size: 50px;
 }
 .block {
-    min-width: 65px;
-    max-width: 65px;
-    min-height: 65px;
-    max-height: 65px;
+    width: 3vw;
+    min-width: 3vw;
+    height: 3vw;
+    max-height: 3vw;
     border: 1px solid #000;
     float: left;
     margin: 1px;
@@ -83,3 +83,39 @@
 .description{
     font-size: 28px;
 }
+
+#leaderboard-body {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Style for table header */
+  #leaderboard-body th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Style for table rows */
+  #leaderboard-body tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  #leaderboard-body tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Style for table data cells */
+  #leaderboard-body td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Style for table data cells when empty */
+  #leaderboard-body td:empty {
+    color: #999;
+    font-style: italic;
+  }

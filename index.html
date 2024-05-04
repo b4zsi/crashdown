@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crashdown</title>
+    <title>Crashdown Game</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -17,7 +17,7 @@
       <div id="game-board"></div>
       <div id="points-container">
         <p id="pointCounter">Pontok: <span id="points">0</span></p>
-        <p>Idő: <span id="timer">0:00</span></p>
+        <p>Idő: <span id="timer">02:00</span></p>
         <h3>Leírás</h3>
         <p class="description">
           A játék az eredeti Crashdown nevű játék alapján készült. A módosítás
@@ -40,15 +40,13 @@
     <div id="win-container" style="display: none">
       <h1>Gratulálok, Te nyertél!</h1>
       <p>Összes pontod: <span id="win-score">0</span></p>
-      <p>Add meg a neved:</p>
-      <input type="text" id="username" name="username" placeholder="Név" />
-      <button type="submit" name="button" onclick="submitform()">Beküld</button>
 
       <p><a href="index.html">Új játék</a></p>
-    </div>
 
-    <div id="scoreboard" style="display: none">Scoreboard</div>
-    <div id="scores-container"></div>
+      <table id="leaderboard-body">
+       
+      </table>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
